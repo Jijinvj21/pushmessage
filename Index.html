@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notification Button Example</title>
+</head>
+<body>
+
+<h1>Click the Button for Notification</h1>
+
+<button id="notificationButton">Click Me</button>
+
+<script>
+document.getElementById('notificationButton').addEventListener('click', function() {
+  if ('Notification' in window) {
+    Notification.requestPermission().then(perm => {
+      if (perm === 'granted') {
+        new Notification("Example notification");
+      } else if (perm === 'denied') {
+        alert("Notification permission denied. You can change this in your browser settings.");
+      }
+    });
+  } else {
+    alert("Notifications are not supported in this browser.");
+  }
+});
+</script>
+
+</body>
+</html>
